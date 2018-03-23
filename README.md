@@ -10,6 +10,7 @@ An application to find a local doctor based on a user-entered ailment or a docto
 This is the code review project for week two of Javascript focused on API calls:
 
 **Doctor Lookup**
+
 Achoo! As we all know, everybody needs to see a doctor sometimes. But finding a doctor that provides the services you need nearby can be time consuming. To facilitate this, you have been asked to create a website where users may enter a medical issue (ie: “sore throat”, "rash", etc.) into a form, submit it, and receive a list of doctors in your city (Portland or Seattle depending on where you are) who can treat their medical issue. Cool!
 
 To provide the data you need for this application, Epicodus has partnered with one of the leading providers of medical data - the BetterDoctor API. You'll use the BetterDoctor API to retrieve this information. This is a live API by a Series A funded startup currently under active development, and used by industry heavy-hitters such as HealthNet to provide accurate medical data.
@@ -21,6 +22,7 @@ To provide the data you need for this application, Epicodus has partnered with o
 * If the query response doesn't include any doctors (for instance, if no doctors meet the search criteria), the application should return a notification that states that no doctors meet the criteria. (This is not an error so it should be handled separately from any errors.)
 
 **Objectives**
+
 Code will be reviewed for the following objectives:
 
  1) Does the application correctly make an API call?
@@ -48,14 +50,22 @@ Code will be reviewed for the following objectives:
   - EXPECTED INPUT: Portland
   - EXPECTED OUTPUT: None.
 
-
-
 * See if assigning a value to a property changes the value assigned at construction
-  - EXPECTED INPUT: "cough"
-  - EXPECTED OUTPUT: None.
+  - EXPECTED INPUT: "Seattle"
+  - EXPECTED OUTPUT: (to console) "new city = Seattle".
 
 * Make an API call with a promise and display results to console.log inside the method getAnswers(symptom, doctor)
-  - EXPECTED INPUT: "sore throat"
+  - EXPECTED INPUT: "", ""
+  - EXPECTED OUTPUT: JSON response or error or nothing
+
+
+
+* Parse the API call response <--
+  - EXPECTED INPUT: "", ""
+  - EXPECTED OUTPUT: JSON response or error or nothing
+
+* Make the API call inside the method getAnswers(symptom, doctor) using the passed arguments symptom and doctor
+  - EXPECTED INPUT: "sore throat", "smith"
   - EXPECTED OUTPUT: JSON response or error or nothing
 
 * Return appropriate message for an error
@@ -134,7 +144,7 @@ After a long process of thinking it through I began by testing some code example
 * Point your browser at the index.html file in the dist folder
 
 ## Future expansion
-Adding more cities besides Portland seems like a logical next step. I could ask the user for their location in a text field or even have them find themselves on Google Maps.
+Adding more cities besides Portland seems like a logical next step. I could ask the user for their location in a text field or even have them find themselves on Google Maps. Also, I'd like to figure out arrow notation with objects!
 
 ## Known Bugs and Issues
 

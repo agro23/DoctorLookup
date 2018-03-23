@@ -14,16 +14,14 @@ Achoo! As we all know, everybody needs to see a doctor sometimes. But finding a 
 
 To provide the data you need for this application, Epicodus has partnered with one of the leading providers of medical data - the BetterDoctor API. You'll use the BetterDoctor API to retrieve this information. This is a live API by a Series A funded startup currently under active development, and used by industry heavy-hitters such as HealthNet to provide accurate medical data.
 
-**Objectives**
-
 * A user should be able to enter a medical issue to receive a list of doctors in the Portland area that fit the search query.
 * A user should be able to to enter a name to receive a list of doctors in the Portland area that fit the search query.
 * If the query response includes any doctors, the following information should be included about each doctor: first name, last name, address, phone number, website and whether or not the doctor is accepting new patients (the API provides this data).
 * If the API call results in an error (any message not a 200 OK), the application should return a notification that states what the error is.
 * If the query response doesn't include any doctors (for instance, if no doctors meet the search criteria), the application should return a notification that states that no doctors meet the criteria. (This is not an error so it should be handled separately from any errors.)
 
-
-- Code will be reviewed for the following objectives:
+**Objectives**
+Code will be reviewed for the following objectives:
 
  1) Does the application correctly make an API call?
  2) Does the application correctly parse data from the API response?
@@ -38,18 +36,25 @@ To provide the data you need for this application, Epicodus has partnered with o
 
 ## Specifications
 
-* Create an age modifier object called Doctorlookup
-  - Constructor should take an ailment and a name
+* Create a Doctor Lookup object called Doctorlookup
+  - Constructor should take a city name (NOTE: permanently set to Portland for now)
 
-* See if object exists
-  - EXPECTED INPUT: "sore throat" or "Molinari"
+* See if object exists by making an instance
+  - EXPECTED INPUT: Portland
   - EXPECTED OUTPUT: None.
+
+* Create a method to return a string to the object
+  - Method should take a symptom and a name (either can be blank)
+  - EXPECTED INPUT: Portland
+  - EXPECTED OUTPUT: None.
+
+
 
 * See if assigning a value to a property changes the value assigned at construction
   - EXPECTED INPUT: "cough"
   - EXPECTED OUTPUT: None.
 
-* Make an API call with a promise and display results to console.log
+* Make an API call with a promise and display results to console.log inside the method getAnswers(symptom, doctor)
   - EXPECTED INPUT: "sore throat"
   - EXPECTED OUTPUT: JSON response or error or nothing
 

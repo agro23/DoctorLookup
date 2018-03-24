@@ -12,7 +12,9 @@ $(document).ready(function() {
       $('#symptom').val("");
       $('#doctor').val("");
       let myDoctor = new DoctorLookup(city);
+      // let x = myDoctor.getAnswers(symptom, doctor, displayResult, displayError);
       let x = myDoctor.getAnswers(symptom, doctor, displayResult, displayError);
+
       // console.log("x = " + x);
       // myDoctor.city= "Seattle";
       // console.log("new city = " + myDoctor.city);

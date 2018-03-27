@@ -28,7 +28,7 @@ $(document).ready(function() {
     // displayString += `The temperature in Farenheit is ${newTemp}`;
     // displayString += "&#8457;";
     let displayString = response;
-    $("#results").text(displayString);
+    $("#results").html(displayString);
 
     // $('.showTemp').html(`The temperature in Kelvins is ${response.main.temp}.`+"<br>");
     // $('.showTemp').append(`The temperature in Farenheit is ${newTemp}`");

@@ -71,8 +71,8 @@ Code will be reviewed for the following objectives:
   - EXPECTED OUTPUT: 401 or 404 message
 
 * Trap for no results and return an appropriate message
-  - EXPECTED INPUT: invalid URL
-  - EXPECTED OUTPUT: (nothing)
+  - EXPECTED INPUT: "bazooka"
+  - EXPECTED OUTPUT: "There are no results matching your query."
 
 * Parse API call's returned JSON for information in specs above
 
@@ -142,7 +142,7 @@ After a long process of thinking it through I began by testing some code example
 * Point your browser at the index.html file in the dist folder
 
 ## Future expansion
-Adding more cities besides Portland seems like a logical next step. I could ask the user for their location in a text field or even have them find themselves on Google Maps. Also, I'd like to figure out arrow notation with objects!
+Adding more cities besides Portland seems like a logical next step. I could ask the user for their location in a text field or even have them find themselves on Google Maps.
 
 ## Known Bugs and Issues
 

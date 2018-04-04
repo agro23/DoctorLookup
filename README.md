@@ -58,14 +58,12 @@ Code will be reviewed for the following objectives:
   - EXPECTED INPUT: "", ""
   - EXPECTED OUTPUT: JSON response or error or nothing
 
-
-
-* Parse the API call response <--
+* Parse the API call response
   - EXPECTED INPUT: "", ""
   - EXPECTED OUTPUT: JSON response or error or nothing
 
-* Make the API call inside the method getAnswers(symptom, doctor) using the passed arguments symptom and doctor
-  - EXPECTED INPUT: "sore throat", "smith"
+* Make the API call inside the method getAnswers(query) using the passed argument of a symptom or doctor
+  - EXPECTED INPUT: "sore throat" or "smith"
   - EXPECTED OUTPUT: JSON response or error or nothing
 
 * Return appropriate message for an error

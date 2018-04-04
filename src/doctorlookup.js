@@ -48,7 +48,8 @@ export class DoctorLookup {
       let newPatients = false;
       let name ="";
       let phone="";
-      let street="";
+      // let street="";
+      let website =";"
       let street1 ="";
       let street2 ="";
 
@@ -84,13 +85,21 @@ export class DoctorLookup {
     	}
 
       try {
+    		website = body.data[i].practices[0].website;
+        console.log("Website: " + website);
+        }
+    	catch (error) {
+    		console.error(error);
+    	}
+
+      try {
         street1 = body.data[i].practices[0].visit_address.street;
         if (body.data[i].practices[0].visit_address.street2 !="" && body.data[i].practices[0].visit_address.street2 !=null) {
            street2 = body.data[i].practices[0].visit_address.street2;
         }
 
-        street = body.data[i].practices[0].visit_address.street;
-        if (body.data[i].practices[0].visit_address.street2 !="" && body.data[i].practices[0].visit_address.street2 !=null) { street = street + "<br>" + body.data[i].practices[0].visit_address.street2; }
+        // street = body.data[i].practices[0].visit_address.street;
+        // if (body.data[i].practices[0].visit_address.street2 !="" && body.data[i].practices[0].visit_address.street2 !=null) { street = street + "<br>" + body.data[i].practices[0].visit_address.street2; }
         // should split this into two streets
       }
       catch (error) {
@@ -104,9 +113,9 @@ export class DoctorLookup {
     	catch (error) {
     		console.error(error);
     	}
-      let news = ""; // // this only works if the string is full of boolean false's from no records and it means that any non-match with a record won't work
-      // if (!newPatients) { news = ""; } else { news = newPatients; }
-      test = test + newPatientsString + "<br>" + name + "<br>" + street + "<br>" + city_state + "<br>" + phone +"<br><br>"; // soon this won't be test but an object array.
+      // let news = ""; // // this only works if the string is full of boolean false's from no records and it means that any non-match with a record won't work
+      // // if (!newPatients) { news = ""; } else { news = newPatients; }
+      // test = test + newPatientsString + "<br>" + name + "<br>" + street + "<br>" + city_state + "<br>" + phone +"<br><br>"; // soon this won't be test but an object array.
        // doctorArray[i]
       // newDoctor.name = name;
       // newDoctor.street1 = street1;
@@ -117,8 +126,7 @@ export class DoctorLookup {
 
       // (name, street1, street2, city_state, phone, newPatients)
       // going to pass doctor array.
-      var tempDoctor = new Doctor(name, street1, street2, city_state, phone, newPatients);
-      console.log("Temp Doc name" + tempDoctor.name);
+      var tempDoctor = new Doctor(name, street1, street2, city_state, phone, website, newPatients);
       if (name !=="" && name !==null && name !==undefined) {
         doctorArray.push(tempDoctor);
         // if (i > 0 && name === doctorArray[i-1].name) {
@@ -140,18 +148,18 @@ export class DoctorLookup {
     // this is all meaningless with an object array. We can instead see if the array is empty AND see if it has duplicate records!
     // I may have to override the equals command like with Testing though!
 
-    let tester = 0;
-    let empty = true;
-    while (tester < test.length) {
-      if (test[tester] !="<" && test[tester] !="b" && test[tester] !="r" && test[tester] !=">" && test[tester] !=" ")
-        {
-          empty = false;
-          test = test + "<br><br> test.length = " + test.length;
-          break;
-        }
-      tester++;
-    }
-    if (empty) { test = "There is no entry with that search criteria."; } // of course with an object array it's a question of empty entries
+    // let tester = 0;
+    // let empty = true;
+    // while (tester < test.length) {
+    //   if (test[tester] !="<" && test[tester] !="b" && test[tester] !="r" && test[tester] !=">" && test[tester] !=" ")
+    //     {
+    //       empty = false;
+    //       test = test + "<br><br> test.length = " + test.length;
+    //       break;
+    //     }
+    //   tester++;
+    // }
+    // if (empty) { test = "There is no entry with that search criteria."; } // of course with an object array it's a question of empty entries
 
       // for (var j = 0; j<10; j ++){
       //   console.log(body.data[j]);

@@ -48,6 +48,9 @@ otherwise show the compiled list of doctors as HTML
         displayString += response.street2 + "<br>";
       }
       displayString += response.city_state + "<br>" + response.phone + "<br>";
+      if (response.website !=="" && response.website !==null && response.website !==undefined) {
+        displayString += response.website + "<br>";
+      }
       if (response.newPatients === true) {
         displayString +="They're accepting new paitents." + "<br>";
       } else {

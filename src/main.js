@@ -6,18 +6,20 @@ import { DoctorLookup } from "../src/doctorlookup.js";
 
 $(document).ready(function() {
     $("#lookup").click(function() {
-      let city = "Portland;"
-      let symptom = $('#symptom').val();
-      let doctor = $('#doctor').val();
-      $('#symptom').val("");
-      $('#doctor').val("");
-      let myDoctor = new DoctorLookup(city);
-      // let x = myDoctor.getAnswers(symptom, doctor, displayResult, displayError);
-      let x = myDoctor.getAnswers(symptom, doctor, displayResult, displayError);
+      // let city = "Portland;"
+      let query = $("#query").val();
+      // let doctor = $('#doctor').val();
+      // console.log(`symptom is: ${symptom} and doctor is: ${doctor}`);
+      $("#query").val("");
+      $("#results").html("");
+      // $('#doctor').val("");
 
-      // console.log("x = " + x);
-      // myDoctor.city= "Seattle";
-      // console.log("new city = " + myDoctor.city);
+      if ( (query !="" && query!=null) && (query !="" || query!=null) )  {
+        let myDoctor = new DoctorLookup();
+        // let x = myDoctor.getAnswers(symptom, doctor, displayResult, displayError);
+        // how am I differentiating between a symptom call versus doctor call?
+        let answers = myDoctor.getAnswers(query, displayResult, displayError);
+      }
   });
 
   let displayResult = function(response){
@@ -27,8 +29,33 @@ $(document).ready(function() {
     // displayString += "<br>";
     // displayString += `The temperature in Farenheit is ${newTemp}`;
     // displayString += "&#8457;";
-    let displayString = response;
-    $("#results").html(displayString);
+    // let displayString = response; // why am i doing this? Why not just response unhindered?
+
+// I will process the response string here. ********************************************************
+
+// let's hope that it comes in here as an array of doctors
+
+/*
+loop through the response string array
+if it's not the first entry check to see if this current entry is a duplicate of the previous one and ignore it if it is
+if all the entries are empty, the response will be "There are no entries matching your response."
+otherwise show the compiled list of doctors as HTML
+*/
+    let displayString ="There are no results matching your query.";
+    if (response !=="" && response !==null && response !==undefined && response !=="none"){
+      displayString = response.name + "<br>" + response.street1 + "<br>";
+      if (response.street2 !=="" && response.street2 !==null && response.street2 !==undefined) {
+        displayString += response.street2 + "<br>";
+      }
+      displayString += response.city_state + "<br>" + response.phone + "<br>";
+      if (response.newPatients === true) {
+        displayString +="They're accepting new paitents." + "<br>";
+      } else {
+        displayString +="They're not accepting new paitents." + "<br>";
+      }
+      displayString +="<br>";
+    }
+    $("#results").append(displayString);
 
     // $('.showTemp').html(`The temperature in Kelvins is ${response.main.temp}.`+"<br>");
     // $('.showTemp').append(`The temperature in Farenheit is ${newTemp}`");

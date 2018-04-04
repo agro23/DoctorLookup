@@ -3,20 +3,26 @@ import $ from 'jquery';
 import { Doctor } from '../src/doctor.js';
 
 export class DoctorLookup {
-  constructor (city, lat = "45.512794", lon = "-122.679565") {
-    this.city = city;
+  constructor (lat = "45.512794", lon = "-122.679565") {
+    // this.city = city;
     this.lat = lat;
     this.lon = lon;
   }
 
-  getAnswers(symptom, doctor, displayResult, displayError) {
-    let urlSymptom = "https://api.betterdoctor.com/2016-03-01/conditions?query=" + symptom + "&location=45.512794,-122.679565,100&skip=0&limit=10&user_key="+process.env.exports.apiKey;
-    console.log("urlSymptom = " + urlSymptom);
-    let url = "https://api.betterdoctor.com/2016-03-01/doctors?query=" + symptom + "&location=45.512794,-122.679565,100&skip=0&limit=10&user_key="+process.env.exports.apiKey;
+  getAnswers(query, displayResult, displayError) {
+    // let urlSymptom = "https://api.betterdoctor.com/2016-03-01/conditions?query=" + symptom + "&location=45.512794,-122.679565,100&skip=0&limit=10&user_key="+process.env.exports.apiKey;
+    // // console.log("urlSymptom = " + urlSymptom);
+    // let urlDoctor = "https://api.betterdoctor.com/2016-03-01/doctors?query=" + doctor + "&location=45.512794,-122.679565,100&skip=0&limit=10&user_key="+process.env.exports.apiKey;
     // the above is the doctor lookup
+    // let url = "";
+    // if (doctor =="" || doctor ==null || doctor ==undefined) {
+    //   url = "https://api.betterdoctor.com/2016-03-01/conditions?query=" + symptom + "&location=45.512794,-122.679565,100&skip=0&limit=10&user_key="+process.env.exports.apiKey; // if there is no doctor filled in, look for a symptom. If there's no symptom also it was already ignored anyway
+    // } else {
+      let url = "https://api.betterdoctor.com/2016-03-01/doctors?query=" + query + "&location=45.512794,-122.679565,100&skip=0&limit=10&user_key="+process.env.exports.apiKey;
+    // }
 
-    // if symptom and doctor are both full and doctor is full lookup the doctors by name otherwise just look for symptom as above.
-    // there will never be a call here that has empty fields.
+    // let url = "https://api.betterdoctor.com/2016-03-01/doctors?query=" + symptom + "&location=45.512794,-122.679565,100&skip=0&limit=10&user_key="+process.env.exports.apiKey;
+
 
     let promise = new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
@@ -110,7 +116,9 @@ export class DoctorLookup {
       // newDoctor.newPatients = newPatients;
 
       // (name, street1, street2, city_state, phone, newPatients)
+      // going to pass doctor array.
       var tempDoctor = new Doctor(name, street1, street2, city_state, phone, newPatients);
+      console.log("Temp Doc name" + tempDoctor.name);
       if (name !=="" && name !==null && name !==undefined) {
         doctorArray.push(tempDoctor);
         // if (i > 0 && name === doctorArray[i-1].name) {
@@ -156,7 +164,14 @@ export class DoctorLookup {
       //   console.log (doctorArray[i]);
       // }
 
-      displayResult(test);
+      // displayResult(test);
+      if (doctorArray.length > 0) {
+        for (let j=0; j < doctorArray.length; j++) {
+          displayResult(doctorArray[j]);
+        }
+      } else {
+        displayResult("none");
+      }
 
     }, function(error) {
       displayError(error);
